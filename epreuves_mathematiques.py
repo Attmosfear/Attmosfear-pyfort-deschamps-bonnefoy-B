@@ -1,4 +1,27 @@
-from random import *
+from random import*
+import random
+from math import*
+
+
+def factorielle(n) :
+    resultat = 1
+    if n == 0 :
+        return(resultat)
+    else :
+        for i in range (1, n+1):
+            resultat = resultat * i
+    return(resultat)
+
+def epreuve_math_factorielle():
+    a = randint(1, 10)
+    print("Épreuve de Mathématiques: Calculer la factorielle de",a)
+    reponse = int(input("Votre réponse est :"))
+    if reponse == factorielle(a):
+        return True
+    else:
+        return False
+
+
 def resoudre_equation_lineaire():
     a = randint(1,10)
     b = randint(1,10)
@@ -27,11 +50,3 @@ def epreuve_roulette_mathematique():
         for i in range(len(tableau_nombre)):
             res = 1
             res = res * tableau_nombre[i]
-
-
-
-
-
-
-
-

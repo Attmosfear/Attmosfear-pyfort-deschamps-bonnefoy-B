@@ -14,5 +14,24 @@ def epreuve_math_equation():
     else:
         return False
 
+def epreuve_roulette_mathematique():
+    tableau_nombre = [randint(1, 20)]*5
+    opp = random('+', '-', 'x')
+    if opp == '+':
+        for i in range(len(tableau_nombre)):
+            res =+ tableau_nombre[i]
+    elif opp == '-':
+        for i in range(len(tableau_nombre)):
+            res =- tableau_nombre[i]
+    else:
+        for i in range(len(tableau_nombre)):
+            res = 1
+            res = res * tableau_nombre[i]
+
+
+
+
+
+
 
 

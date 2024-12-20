@@ -58,3 +58,8 @@ def est_premier(n):
         if n % i == 0:
             return False
     return True
+
+def premier_plus_proche(n):
+    while not est_premier(n):
+        n = n + 1
+    return n

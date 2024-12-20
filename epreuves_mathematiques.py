@@ -1,5 +1,4 @@
-from operator import is_not
-from random import *
+from random import*
 import random
 from math import*
 
@@ -78,5 +77,17 @@ def est_premier(n):
 
 def premier_plus_proche(n):
     while not est_premier(n):
-        n = n + 1
+        n += 1
     return n
+
+def epreuve_math_premier():
+    x = random.randint(10, 20)
+    print("Trouver le nombre premier le plus proche de", x, ":")
+    reponse = int(input("Votre réponse : "))
+    solution = premier_plus_proche(x)
+    if reponse == solution:
+        print("Correct !")
+        return True
+    else:
+        print("Faux. La bonne réponse était", solution)
+        return False

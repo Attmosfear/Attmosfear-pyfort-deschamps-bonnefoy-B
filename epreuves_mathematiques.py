@@ -91,3 +91,4 @@ def epreuve_math_premier():
     else:
         print("Faux. La bonne réponse était", solution)
         return False
+

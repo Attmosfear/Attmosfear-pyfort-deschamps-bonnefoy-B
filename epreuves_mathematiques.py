@@ -1,7 +1,5 @@
-from random import*
+from random import *
 import random
-from math import*
-
 
 def factorielle(n) :
     resultat = 1
@@ -14,7 +12,7 @@ def factorielle(n) :
 
 def epreuve_math_factorielle():
     a = randint(1, 10)
-    print("Épreuve de Mathématiques: Calculer la factorielle de",a)
+    print("Calculer la factorielle de",a)
     reponse = int(input("Votre réponse est :"))
     if reponse == factorielle(a):
         return True
@@ -47,21 +45,20 @@ def epreuve_roulette_mathematique():
     index = randint(0, len(tableau_opp)-1)
     opp = tableau_opp[index]
     if opp == '+':
-        for i in range(len(tableau_nombre)):
-            res = 0
-            res =+ tableau_nombre[i]
+        res = 0
+        for i in range(0, len(tableau_nombre)):
+            res = res + tableau_nombre[i]
         print("Calculez le résultat en combinant ces nombres avec une addition")
     elif opp == '-':
-        for i in range(len(tableau_nombre)):
-            res = 0
-            res =- tableau_nombre[i]
+        res = 0
+        for i in range(0, len(tableau_nombre)):
+            res = res - tableau_nombre[i]
         print("Calculez le résultat en combinant ces nombres avec une soustraction")
     else:
-        for i in range(len(tableau_nombre)):
-            res = 1
+        res = 1
+        for i in range(0, len(tableau_nombre)):
             res = res * tableau_nombre[i]
         print("Calculez le résultat en combinant ces nombres avec une multiplication")
-
     proposition = int(input("Votre réponse : "))
     if  proposition != res:
         return False
@@ -92,3 +89,10 @@ def epreuve_math_premier():
         print("Faux. La bonne réponse était", solution)
         return False
 
+def epreuve_math():
+    epreuves = [epreuve_math_equation, epreuve_math_factorielle,epreuve_roulette_mathematique, epreuve_math_premier]
+    epreuve = epreuves[randint(0, len(epreuves)-1)]
+    print("Épreuve de Mathématiques:")
+    return epreuve()
+
+print(epreuve_math())

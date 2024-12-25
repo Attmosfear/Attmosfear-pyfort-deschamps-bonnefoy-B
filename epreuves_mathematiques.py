@@ -94,5 +94,3 @@ def epreuve_math():
     epreuve = epreuves[randint(0, len(epreuves)-1)]
     print("Épreuve de Mathématiques:")
     return epreuve()
-
-print(epreuve_math())

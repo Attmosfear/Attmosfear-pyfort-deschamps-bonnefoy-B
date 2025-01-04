@@ -53,3 +53,8 @@ def bonneteau() :
 
     print("Vous avez perdu ! La clé se trouvait sous le bonneteau",bonneteau_choisi,".")
     return False
+
+def epreuve_hasard():
+    epreuves = [jeu_lance_des, bonneteau]
+    epreuve = epreuves[random.randint(0, len(epreuves) - 1)]
+    epreuve()

@@ -28,3 +28,28 @@ def jeu_lance_des():
     print("Aucun joueur n'a obtenu un 6 après 3 essais. C'est un match nul !")
     return False
 
+
+
+def bonneteau() :
+    bonneteaux = ['A','B','C']
+    max_tentatives = 2
+
+    print("Bienvenue au jeu de bonneteau ! Voici les règles : \nUne clé est cachée sous l'un des bonneteaux le A, le B ou le C et vous devez simplement la retrouver en 2 essais.\n")
+    print("Les bonneteaux disponibles sont donc : A B C")
+
+    for i in range(1, max_tentatives + 1):
+        bonneteau_choisi = bonneteaux[random.randint(0, len(bonneteaux) - 1)]
+        print("\nTentative" ,i, "sur",max_tentatives,".")
+        choix_joueur = input("Choisissez un bonneteau A, B ou C : ").upper()
+
+        if choix_joueur in bonneteaux:
+            if choix_joueur == bonneteau_choisi:
+                print("Bravo ! Vous avez trouvé la clé sous le bonneteau",bonneteau_choisi,".")
+                return True
+            else:
+                print("Rater, la clé ne se trouvait pas sous ce bonneteau.")
+        else:
+            print("Choix invalide. Veuillez entrer A, B ou C.")
+
+    print("Vous avez perdu ! La clé se trouvait sous le bonneteau",bonneteau_choisi,".")
+    return False

@@ -1,14 +1,13 @@
 from random import *
 
-
 def suiv(joueur):
     if joueur == 0:
         return 1
     else:
         return 0
 
-def grille_vide():
-    grille = [[" "for _ in range(3)]for _ in range(3)]
+def grille_vide(taille_plateau = 3):
+    grille = [[" "for _ in range(taille_plateau)]for _ in range(taille_plateau)]
     return grille
 
 def affiche_grille(grille, message):
@@ -24,21 +23,40 @@ def affiche_grille(grille, message):
 def demande_position():
     position = input("Entrez la position (ligne,colonne) entre 1 et 3 (ex: 1,2) : ")
     position_tab = position.split(",")
+    if len(position_tab) != 2:
+        print("Mauvais format de position")
+        return demande_position()
     for pos in position_tab:
         if int(pos) < 1 or int(pos) > 3:
-            return False
+            print("Mauvais format de position")
+            return demande_position()
     position_tuple = tuple(int(x)-1 for x in position_tab)
     return position_tuple
 
 def init():
-    grille = grille_vide()
+    grille_joueur = grille_vide()
+    # Creation de la grille de bateau du joueur
     print("Positionnez vos bateaux :")
-    for i in range(1,3):
+    i = 1
+    while i < 3:
         print("Bateau", i)
         pos = demande_position()
-        if grille[pos[0]][pos[1]] == " ":
-            grille[pos[0]][pos[1]] = "B"
-    return grille
+        if grille_joueur[pos[0]][pos[1]] == " ":
+            grille_joueur[pos[0]][pos[1]] = "B"
+            i = i + 1
+        else:
+            print("Un bateau se trouve deja a cette position")
+    # Creation de la grille de bateau du maitre du jeu
+    i = 0
+    grille_maitre = grille_vide()
+    while i < 2:
+        pos = (randint(0, 2), randint(0, 2))
+        if grille_maitre[pos[0]][pos[1]] == " ":
+            grille_maitre[pos[0]][pos[1]] = "B"
+            i = i + 1
+    print(grille_maitre)
+
+    return grille_joueur, grille_maitre
 
 def tour(joueur, grille_tirs_joueur, grille_adversaire):
     if joueur == 0:
@@ -54,15 +72,37 @@ def tour(joueur, grille_tirs_joueur, grille_adversaire):
         print("Touché coulé !")
         grille_tirs_joueur[tir[0]][tir[1]] = "x"
 
-#tour(1, grille_vide(), grille_vide())
-
-def gagne(grille_tirs_joueur):
+def gagne(grille_tirs):
     touche = 0
-    for i in range(1,3):
-        for j in range(1,3):
-            if grille_tirs_joueur[i][j] == "x":
+    for i in range(3):
+        for j in range(3):
+            if grille_tirs[i][j] == "x":
                 touche += 1
-    if touche <= 2:
+    if touche >= 2:
         return True
     else:
         return False
+
+def jeu_bataille_navale():
+    print("Chaque joueur doit placer 2 bateaux sur une grille de 3x3.")
+    print("Les bateaux sont représentés par 'B' et les tirs manqués par '.'. Les bateaux coulés sont marqués par 'x'.")
+    grille_joueur, grille_maitre = init()
+    affiche_grille(grille_joueur, "Découvrez votre grille de jeu avec vos bateaux :")
+    grille_tir_joueur = grille_vide()
+    grille_tir_maitre = grille_vide()
+    while True:
+        joueur = 1
+        tour(joueur, grille_tir_joueur, grille_maitre)
+        joueur = suiv(joueur)
+        tour(joueur, grille_tir_maitre, grille_joueur)
+        print(joueur)
+        if gagne(grille_tir_joueur) is True:
+            print("Le joueur a gagné !")
+            return True
+        if gagne(grille_tir_maitre) is True:
+            print("Vous avez perdu !")
+            return False
+
+
+
+jeu_bataille_navale()

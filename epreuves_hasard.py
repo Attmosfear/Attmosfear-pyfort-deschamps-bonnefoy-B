@@ -1,3 +1,4 @@
+#Attmosfear-pyfort-deschamps-bonnefoy-B ; Florian Bonnefoy ; Epreuve de hasard
 from random import *
 import random
 

@@ -1,14 +1,24 @@
+#Attmosfear-pyfort-deschamps-bonnefoy-B, Deschamps Malo, Fonction utiles pour le jeu
+
 def introduction():
-    print("Bienvenue dans le Fort Boyard Simulator ! 🎉")
+    """
+    Cette fonction permet simplement d'introduire le jeu au joueurs en expliquant les règles
+    :return: rien puisqu'elle sert simplement a affiché
+    """
+    print("Bienvenue dans le Fort Boyard Simulator ! 🎉\n")
     print("En bref, c'est Fort Boyard sauf que vous n'etes pas connus, nous n'avons pas de budget donc vous n'etes pas filmé")
     print("Cependant, il y a quand meme un prix à gagné")
-    print("Alors, Bonne chance !!! ")
+    print("Alors, Bonne chance !!! \n")
     print("Voici les règles de base :")
     print("1. Vous devez accomplir des épreuves pour gagner des clés.")
     print("2. Ramassez trois clés pour accéder à la salle du trésor.")
-    print("3. Déverrouillez la salle du trésor pour remporter la victoire ! 🏆")
+    print("3. Déverrouillez la salle du trésor pour remporter la victoire ! 🏆\n")
 
 def composer_equipe():
+    """
+    Permet au joueur de composer son equipe de 1 à 3 joueurs
+    :return: retourne l'equipe sous forme de tableau de dictionnaire pour un traitement simple
+    """
     print("C'est l'heure de composer votre équipe ! 🧑‍🤝‍🧑")
     equipe = []
     #Recuperation du nombre de joueur
@@ -52,10 +62,14 @@ def composer_equipe():
 
 
 def menu_epreuves():
+    """
+    Cette fonction permet au joueur de choisir le type d'epreuve auquelle il souhaite jouer pour gagner une clé
+    :return: retourne le numero correspondant à l'epreuve souhaité
+    """
     print("\n=== Menu des Épreuves ===")
-    print("\n1. Épreuve de Mathématiques")
-    print("2. Épreuve de Logique")
-    print("3. Épreuve du Hasard")
+    print("\n1. Épreuve de mathématiques")
+    print("2. Épreuve de logique")
+    print("3. Épreuve de hasard")
     print("4. Énigme du Père Fouras\n")
 
     while True:
@@ -69,6 +83,11 @@ def menu_epreuves():
 
 
 def choisir_joueur(equipe):
+    """
+    Cette fonction permet au joueur de choisir qu'elle personne de son equipe va jouer
+    :param equipe: recupere les membres de l'equipe
+    :return: retourne le joueur qui va jouer
+    """
     print("\n=== Sélection d'un Joueur ===")
     i = 0
     for joueur in equipe:

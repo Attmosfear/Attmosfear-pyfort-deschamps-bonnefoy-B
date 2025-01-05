@@ -1,16 +1,34 @@
+#Attmosfear-pyfort-deschamps-bonnefoy-B, Deschamps Malo, Epreuve de logique
 from random import *
 
 def suiv(joueur):
+    """
+    Cette fonction permet de suivre donc d'alterner les joueurs plus simplement
+    :param joueur: recupere le joueur precedent
+    :return: retourne le joueur suivant
+    """
     if joueur == 0:
         return 1
     else:
         return 0
 
 def grille_vide(taille_plateau = 3):
+    """
+    Cette fonction permet de creer une grille vide selon la taille du plateau souhaitée (de base un carre de 3x3 comme demandé dans la consigne)
+    :param taille_plateau: determine la taille du coté du plateau souhaitée
+    :return: retourne la grille vide au format souhaité
+    """
+
     grille = [[" "for _ in range(taille_plateau)]for _ in range(taille_plateau)]
     return grille
 
 def affiche_grille(grille, message):
+    """
+    Cette fonction permet de faire un affichage propre et coherent de la grille a chaque fois
+    :param grille: recupere la grille qu'il faut afficher
+    :param message: recupere le message qui correponds a la grille affiché
+    :return:
+    """
     print(message)
     for i in range(len(grille)):
         for j in range(len(grille[i])):
@@ -21,8 +39,13 @@ def affiche_grille(grille, message):
     print("-------------")
 
 def demande_position():
+    """
+    Cette fonction permet de demander une position au joueur pour qu'il effectue une action sur le plateau
+    :return: retourne un tuple premettant de traiter facilement la position
+    """
     position = input("Entrez la position (ligne,colonne) entre 1 et 3 (ex: 1,2) : ")
     position_tab = position.split(",")
+    # Verification de l'input du joueur
     if len(position_tab) != 2:
         print("Mauvais format de position")
         return demande_position()
@@ -34,6 +57,10 @@ def demande_position():
     return position_tuple
 
 def init():
+    """
+    Cette fonction permet d'initialiser la partie ainsi de creer les grillles de bateau
+    :return: retourne les grillles de bateau pour le joueur et pour le maitre du jeu
+    """
     grille_joueur = grille_vide()
     # Creation de la grille de bateau du joueur
     print("Positionnez vos bateaux :")
@@ -54,11 +81,17 @@ def init():
         if grille_maitre[pos[0]][pos[1]] == " ":
             grille_maitre[pos[0]][pos[1]] = "B"
             i = i + 1
-    print(grille_maitre)
 
     return grille_joueur, grille_maitre
 
 def tour(joueur, grille_tirs_joueur, grille_adversaire):
+    """
+    Cette fonction permet d'effectuer un tour de jeu, c'est a dire, effectuer un tir sur la grille de son adversaire
+    :param joueur: recupere le joueur qui tir pour savoir comment tirer
+    :param grille_tirs_joueur: recupere la grille de tir pour qu'il puisse voir ses precedents tirs
+    :param grille_adversaire: recupere la grille de l'adversaire pour verifier si le tir est bon
+    :return: rien car elle doit modifier les grilles deja existante
+    """
     if joueur == 0:
         tir = (randint(0, 2), randint(0, 2))
         print(f"Le maitre du jeu tire en position {tir[0]+1},{tir[1]+1}")
@@ -73,17 +106,28 @@ def tour(joueur, grille_tirs_joueur, grille_adversaire):
         grille_tirs_joueur[tir[0]][tir[1]] = "x"
 
 def gagne(grille_tirs):
+    """
+    Cette fonction permet de determiner si le joueur a gagner (couler les bateaux de son adversaire)
+    :param grille_tirs: recuperer la grille des tirs precedents pour identifier les tirs touchées
+    :return: True ou False selon si le joueur a detruit tous les bateaux de son adversaire ou non
+    """
     touche = 0
+    # Compte le nombre de bateau coulé par le joueur
     for i in range(3):
         for j in range(3):
             if grille_tirs[i][j] == "x":
                 touche += 1
+    # Verification du nombre de bateau coulé
     if touche >= 2:
         return True
     else:
         return False
 
 def jeu_bataille_navale():
+    """
+    Cette fonction est la fonction finale qui regroupe toutes les autres fonctions et permet donc de jouer
+    :return: retourne si le jouers a gagné (True) ou si le joueur a perdu (False)
+    """
     print("Chaque joueur doit placer 2 bateaux sur une grille de 3x3.")
     print("Les bateaux sont représentés par 'B' et les tirs manqués par '.'. Les bateaux coulés sont marqués par 'x'.")
     grille_joueur, grille_maitre = init()

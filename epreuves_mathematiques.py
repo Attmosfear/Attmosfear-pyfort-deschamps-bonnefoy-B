@@ -93,4 +93,4 @@ def epreuve_math():
     epreuves = [epreuve_math_equation, epreuve_math_factorielle,epreuve_roulette_mathematique, epreuve_math_premier]
     epreuve = epreuves[randint(0, len(epreuves)-1)]
     print("Épreuve de Mathématiques:")
-    return epreuve()
+    epreuve()

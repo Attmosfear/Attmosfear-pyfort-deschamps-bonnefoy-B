@@ -103,6 +103,3 @@ def jeu_bataille_navale():
             print("Vous avez perdu !")
             return False
 
-
-
-jeu_bataille_navale()

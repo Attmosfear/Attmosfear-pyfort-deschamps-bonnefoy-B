@@ -66,6 +66,8 @@ def menu_epreuves():
             print("Veuillez choisir un nombre entre 1 et 4.")
         except ValueError:
             print("Entrée invalide. Veuillez entrer un nombre.")
+
+
 def choisir_joueur(equipe):
     print("\n=== Sélection d'un Joueur ===")
     i = 0
@@ -87,3 +89,4 @@ def choisir_joueur(equipe):
             print("Veuillez entrer un numéro valide.")
         except ValueError:
             print("Entrée invalide. Veuillez entrer un nombre.")
+
